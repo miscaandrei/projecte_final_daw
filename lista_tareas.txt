@@ -1,0 +1,7 @@
+Aquet doument ho farem servir per apuntar els punts que shan de treballar en el projecte, apart els punts en qual stem treballant i ha treballat cadascun. 
+Ex: 
+
+34: bla bla bla - FET - Andrei  
+35: Ha bla bla - En curs - Andrei
+36: bla la la - En curs - Alex
+37: bla bla - Fet - Richard
