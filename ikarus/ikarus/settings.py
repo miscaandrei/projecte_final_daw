@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+from mongoengine import connect
 
 
+connect('localhost')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -36,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mongoengine.django.mongo_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,9 +63,13 @@ DATABASES = {
       'ENGINE' : 'django_mongodb_engine',
       'NAME' : 'ikarus',
       'HOST' : '127.0.0.1',
-      'PORT' : 27017
+      'PORT' : 27017,
+      'USERNAME':'',
+      'PASSWORD': ''
    }
 }
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -85,6 +92,19 @@ SESSION_ENGINE = 'mongoengine.django.sessions'
 
 STATIC_URL = '/static/'
 
+
+
+
+
 AUTHENTICATION_BACKENDS = (
     'mongoengine.django.auth.MongoEngineBackend',
 )
+
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+
+
