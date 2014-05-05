@@ -56,10 +56,12 @@ WSGI_APPLICATION = 'ikarus.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+   'default' : {
+      'ENGINE' : 'django_mongodb_engine',
+      'NAME' : 'ikarus',
+      'HOST' : '127.0.0.1',
+      'PORT' : 27017
+   }
 }
 
 # Internationalization
@@ -76,7 +78,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+SESSION_ENGINE = 'mongoengine.django.sessions'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
