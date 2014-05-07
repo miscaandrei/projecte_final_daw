@@ -1,4 +1,9 @@
+
+import os
+BASE_DIR = os.path.dirname(os.path.realpath(__file__)) 
 # Django settings for ikarus_base project.
+
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -61,7 +66,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = 'ikarus_app/static'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -69,9 +74,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, "static"),
+    '/home/andrei/Projectes/Ikarus/GitHub/projecte_final_daw/ikarus_base/static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -122,12 +126,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_mongodb_engine',
     'django.contrib.admin',
+    'django.contrib.gis',
+    'djangotoolbox',
+    'ikarus_app'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
-
+    
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging
