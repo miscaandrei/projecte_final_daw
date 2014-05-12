@@ -21,9 +21,9 @@ class Client(models.Model):
 	description=models.CharField(max_length=250)
 	completed_quests=models.CharField(max_length=250) # llista JSON
 	inventory=models.CharField(max_length=250) # llista JSON
-	def image_(self):
-		return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(self.thumbnail)
-	image_.allow_tags = True
+	#def image_(self):
+		#return '<a href="/media/{0}"><img src="/media/{0}"></a>'.format(	)
+	#image_.allow_tags = True
 
 
 class Objecte(models.Model):

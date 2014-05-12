@@ -1,4 +1,3 @@
-
 import os
 BASE_DIR = os.path.dirname(os.path.realpath(__file__)) 
 # Django settings for ikarus_base project.
@@ -66,7 +65,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'ikarus_app/static'
+STATIC_ROOT = 'ikarus_app/staticfiles/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
