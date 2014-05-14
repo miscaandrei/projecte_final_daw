@@ -37,7 +37,7 @@ class Objecte(models.Model):
 	posicio=models.CharField(max_length=250) #desa dins l'ubicacio en forma deJSOn amb Lon Lat
 
 
-class Quests(models.Model):
+class Quest(models.Model):
 	"""docstring for Quests"""
 	nom=models.CharField(max_length=250)
 	description=models.CharField(max_length=250)
@@ -51,4 +51,4 @@ class Quests(models.Model):
 
 admin.site.register(Client, Client_admin)
 admin.site.register(Objecte, Objecte_admin)
-admin.site.register(Quests, Quests_admin)
+admin.site.register(Quest, Quests_admin)
