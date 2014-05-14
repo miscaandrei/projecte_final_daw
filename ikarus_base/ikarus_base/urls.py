@@ -29,5 +29,6 @@ urlpatterns = patterns('',
     #url(r'^accounts/login/$', login),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),
     url(r'^profile/', 'ikarus_app.views.user_profile', name='Profile'),
+    url(r'^inventory/', 'ikarus_app.views.user_inventory', name='Inventory'),
 )
 
