@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+{% endif %}
+
+<ul>
+	<li>Referencia de client : {{ ref_client }}</li>
+	<li>Nom : {{ Nom }}</li>
+	<li>Cognom : {{ Cognoms }}</li>
+	<li>Rating : {{ rating }}</li>
+	<li>Location : {{ location }}</li>
+	<li>Inventory : {{ inventory }}</li>
+
+</ul>
+
+
+
+
+
+
+
+
+
+{% endblock %}

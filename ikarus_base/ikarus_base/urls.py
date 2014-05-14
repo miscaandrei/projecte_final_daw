@@ -7,6 +7,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+
+
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -19,6 +22,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    #url(r'^', include('marcador.urls')),
     url(r'^image/', 'ikarus_app.views.image', name='image'),
     url(r'^d_image/', 'ikarus_app.views.d_image', name='d_image'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    #url(r'^accounts/login/$', login),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),
+    url(r'^profile/', 'ikarus_app.views.user_profile', name='Profile'),
 )
+

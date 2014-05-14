@@ -3,7 +3,6 @@ BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 # Django settings for ikarus_base project.
 
 
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -114,6 +113,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    BASE_DIR + '/templates/'
 )
 
 INSTALLED_APPS = (
@@ -127,7 +127,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.gis',
     'djangotoolbox',
-    'ikarus_app'
+    'ikarus_app',
+
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -164,3 +165,10 @@ LOGGING = {
         },
     }
 }
+
+
+AUTH_PROFILE_MODULE = 'ikarus_app.Client'
+LOGIN_REDIRECT_URL = "/profile/"
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # Linia que estableix si els cookie s'esbori al tancar el navegador.
+SESSION_COOKIE_AGE = 15 * 60 # Linia que estableix el temps de caducitat dels cookies que es en segons , per aixo hi ha 15 minuts * 60 segons
