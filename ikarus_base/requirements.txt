@@ -11,5 +11,6 @@ djangotoolbox==1.6.2
 mongoengine==0.8.7
 mongoengine-extras==0.0.1
 pymongo==2.7
+simplejson==3.4.1
 six==1.6.1
 wsgiref==0.1.2

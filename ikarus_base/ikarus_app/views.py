@@ -8,7 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import *
 from django.contrib import auth
 from django.utils import simplejson
-
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+import json
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def home(request):
@@ -101,18 +104,50 @@ def json_auth_web_service_out(request):
 	data = simplejson.dumps(some_data_to_dump)
 	return HttpResponse(data, mimetype='application/json')
 
-
+@csrf_exempt
 def json_auth_web_service_in(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			#print 'Raw Data: "%s"' % request.body   
-			#return HttpResponse("OK")
-			html = "OK!!"
+	if request.method == 'POST':
+		decoded_json = json.loads(request.body)
+		#user = User.objects.filter(username=decoded_json['username'])
+		username = decoded_json['username']
+		password = decoded_json['password']
+		user = authenticate(username=username, password=password)
+		if user: 
+			print "ok. loged in"
+			json_resultat= get_user_object_to_json(user)
+			return HttpResponse(json_resultat, mimetype='application/json')
+			
 		else:
-			html = "Eroor!!" 
+			print "invalid"
+
+		#if User.objects.filter(username=decoded_json['username']): funciona
+		#	print "User Exists"
+		#	success = user.check_password(decoded_json['password'])
+		#	if success:
+		#		print "password OK"
+		#	else:
+		#		print "paswoord invalid"
+		#else :
+		#	print "USER INVALID"
+		#print 'Raw Data: "%s"' % request.body
+
+
+
+		#decoded_json = json.loads(request.body)
+		#print 'Decoded : "%s"' % decoded_json
+		#print 'username : "%s"' % decoded_json['username']
+
+		#return HttpResponse("OK")
+		#html = "OK!!"
 	else:
-		html = "No request sent"
+		html = "Eroor!!" 
 	return HttpResponse(html)
 			
 
-
+#funcioa per pillar la lista del usuari i passarho cap al client movil via webservice
+def get_user_object_to_json(user): 
+	client=Client.objects.get(username=user) # buscar el client que te relacio directa amb el USER desat
+	dic={"ref_client": client.ref_client, "Nom":client.nom ,"Cognoms":client.cognoms, "rating":client.rating, "location":client.location,"inventari": client.inventory}
+	#print dic
+	resultat=simplejson.dumps(dic)
+	return resultat
