@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import *
 from django.contrib import auth
+from django.utils import simplejson
 
 
 # Create your views here.
@@ -90,3 +91,28 @@ def social(request):
 def mobile_app(request):
 	pass
 	return render( request, "base.html")
+
+
+def json_auth_web_service_out(request):
+	some_data_to_dump = {
+	'nom': 'foo',
+	'coord': '24 , 45 ',
+	}
+	data = simplejson.dumps(some_data_to_dump)
+	return HttpResponse(data, mimetype='application/json')
+
+
+def json_auth_web_service_in(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			#print 'Raw Data: "%s"' % request.body   
+			#return HttpResponse("OK")
+			html = "OK!!"
+		else:
+			html = "Eroor!!" 
+	else:
+		html = "No request sent"
+	return HttpResponse(html)
+			
+
+

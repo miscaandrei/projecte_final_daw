@@ -30,5 +30,8 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),
     url(r'^profile/', 'ikarus_app.views.user_profile', name='Profile'),
     url(r'^inventory/', 'ikarus_app.views.user_inventory', name='Inventory'),
+    url(r'^json/', 'ikarus_app.views.json_auth_web_service_out', name='JSON'),
+    url(r'^json_in/', 'ikarus_app.views.json_auth_web_service_in'),
 )
+
 
