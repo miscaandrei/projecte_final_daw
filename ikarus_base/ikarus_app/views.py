@@ -114,12 +114,12 @@ def json_auth_web_service_in(request):
 		user = authenticate(username=username, password=password)
 		if user: 
 			print "ok. loged in"
-			json_resultat= get_user_object_to_json(user)
-			return HttpResponse(json_resultat, mimetype='application/json')
+			resultat= get_user_object_to_json(user)
+			return HttpResponse(resultat, mimetype='application/json')
 			
 		else:
 			print "invalid"
-
+			
 		#if User.objects.filter(username=decoded_json['username']): funciona
 		#	print "User Exists"
 		#	success = user.check_password(decoded_json['password'])
@@ -140,8 +140,11 @@ def json_auth_web_service_in(request):
 		#return HttpResponse("OK")
 		#html = "OK!!"
 	else:
-		html = "Eroor!!" 
-	return HttpResponse(html)
+		print "login error"
+
+	resultat="Log In ERROR"
+	return HttpResponse(resultat, mimetype='application/json')
+	
 			
 
 #funcioa per pillar la lista del usuari i passarho cap al client movil via webservice
