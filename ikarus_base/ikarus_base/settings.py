@@ -39,7 +39,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = '5367d490245f2312749b0ab6'
-
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -53,18 +53,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/home/andrei/Projectes/Ikarus/GitHub/projecte_final_daw/ikarus_base'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = MEDIA_ROOT+'/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'ikarus_app/staticfiles/'
+STATIC_ROOT = os.path.join(SITE_ROOT, 'statics')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"

@@ -43,7 +43,17 @@ def user_profile(request):
 
 	#html = "<html><p> %s. </p></html>" %client.ref_client
 	#return HttpResponse(html)
-	return render( request, "profile.html", {"ref_client": client.ref_client, "Nom":client.nom ,"Cognoms":client.cognoms, "rating":client.rating, "location":client.location}) #aixo ja funciona
+	return render( request, "profile.html", {"ref_client": client.ref_client, "Nom":client.nom ,"Cognoms":client.cognoms, "rating":client.rating, "location":client.location, "client":client}) #aixo ja funciona
+
+
+#test to retrieve an image from the DB to the template 
+def d_image_test(request):
+	a=Client.objects.get(nom="Dummy")
+	return render(request, "image_test.html", {"a":a})
+
+
+
+
 
 @login_required
 def user_inventory(request):
@@ -120,25 +130,6 @@ def json_auth_web_service_in(request):
 		else:
 			print "invalid"
 			
-		#if User.objects.filter(username=decoded_json['username']): funciona
-		#	print "User Exists"
-		#	success = user.check_password(decoded_json['password'])
-		#	if success:
-		#		print "password OK"
-		#	else:
-		#		print "paswoord invalid"
-		#else :
-		#	print "USER INVALID"
-		#print 'Raw Data: "%s"' % request.body
-
-
-
-		#decoded_json = json.loads(request.body)
-		#print 'Decoded : "%s"' % decoded_json
-		#print 'username : "%s"' % decoded_json['username']
-
-		#return HttpResponse("OK")
-		#html = "OK!!"
 	else:
 		print "login error"
 
@@ -154,3 +145,28 @@ def get_user_object_to_json(user):
 	#print dic
 	resultat=simplejson.dumps(dic)
 	return resultat
+
+
+@csrf_exempt
+def json_movile_geo_objects(request):
+	if request.method == 'POST':
+		decoded_json = json.loads(request.body)
+		#user = User.objects.filter(username=decoded_json['username'])
+		longitude = decoded_json['longitude']
+		latitude = decoded_json['latitude']
+		print "dades rebudes "
+		print longitude
+		print latitude
+		resultat = "OK! dades rebudes"
+		objecte=Objecte.objects.get(ref_objecte=10025)
+		dic = {"longitude":objecte.longitude, "latitude":objecte.latitude}
+		resultat=simplejson.dumps(dic)
+		print resultat
+		print "enviant resposta "
+		return HttpResponse(resultat, mimetype='application/json')
+			
+	else:
+		print "UPS! res rebut  error"
+		resultat="ERROR, no funciona del servidor "
+	return HttpResponse(resultat, mimetype='application/json')
+	
