@@ -157,7 +157,7 @@ function installModel(file, bgColor) {
 	renderer.AA = 1;
 	render();
 	var loader = new THREE.JSONLoader();
-	loader.load('objects/' + file, modelLoadedCallback);
+	loader.load(baseUrl + file, modelLoadedCallback);
 }
 
 /**

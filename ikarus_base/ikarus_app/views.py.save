@@ -3,7 +3,7 @@ from django.http import *
 import datetime
 from models import *
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+41.720443from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import *
 from django.contrib import auth
@@ -12,11 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 from django.contrib.auth import authenticate, login
-import math
 
 # Create your views here.
 def home(request):
-	return render( request, "home.html" )
+	html = "<html><h1 align='center'>Wellcome to </br> Ikarus Project App</h1></html>" 
+	#return HttpResponse(html)
+	return render( request, "base.html")
 
 
 def d_image(request):
@@ -141,7 +142,7 @@ def json_auth_web_service_in(request):
 			print "| ---> END OF COMUNICATION <---"
 			print "+------------------------------------ \n\n\n"
 
-			resultat="Server: Check Username and/or Password! "
+			resultat="Server: Access Denied! Log In FAILED! Please check Username and/or Password! "
 			return HttpResponse(resultat, mimetype='application/json')
 			
 	else:
@@ -151,7 +152,7 @@ def json_auth_web_service_in(request):
 		print "| ---> END OF COMUNICATION <---"
 		print "+------------------------------------ \n\n\n"
 
-	resultat="Server: Access Denied! /br Request restricted to POST method"
+	resultat="Server: Access Denied! Request restricted to POST method"
 	return HttpResponse(resultat, mimetype='application/json')
 	
 			
@@ -170,19 +171,19 @@ def json_movile_geo_objects(request):
 	if request.method == 'POST':
 		decoded_json = json.loads(request.body)
 		#user = User.objects.filter(username=decoded_json['username'])
-		longitude_user = decoded_json['longitude']
-		latitude_user = decoded_json['latitude']
+		longitude = decoded_json['longitude']
+		latitude = decoded_json['latitude']
 
 		#mostrar que hem rebut els datos7
 		print "+-------------# SERVER #-------------"
 		print "| Incoming request for Geo Location Items!"
 		print "| . . . "
 		print "| OK! Data has been received!"
-		print "| Longitude: " +longitude_user
-		print "| Latitude: " + latitude_user 
+		print "| Longitude: " +longitude
+		print "| Latitude: " + latitude 
 		print "| Searching for data . . . "
 
-		resultat = torna_geo_items(longitude_user,latitude_user)
+		resultat = torna_geo_items()
 
 		print "| Data Found!"
 		print "| Sending response to client!"
@@ -204,33 +205,16 @@ def json_movile_geo_objects(request):
 	return HttpResponse(resultat, mimetype='application/json')
 
 
-
-def torna_geo_items(longitude_user,latitude_user):
-	lista_id_objectes=[10025, 10026, 10023, 10024, 10027, 10028]
-
+def torna_geo_items():
+	lista_id_objectes=[10025, 10026, 10023, 10024]
 	lista={"datos":[]}
 
 	for i in lista_id_objectes:
 		item = Objecte.objects.get(ref_objecte=i)
-		if calcul_distancia_2_punts(longitude_user, latitude_user, item.longitude, item.latitude) <=800:
-			dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
-			lista["datos"].append(dic)
-		else:
-			pass
+		dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
+		lista["datos"].append(dic)
 
 	resultat=simplejson.dumps(lista)
 	print resultat
 	return resultat
 
-
-
-
-
-
-def calcul_distancia_2_punts(x1,y1,x2,y2):
-	suma = (float(x2)-float(x1))*(float(x2)-float(x1))+(float(y2)-float(y1))*(float(y2)-float(y1))
-	d=math.sqrt(suma)
-	resultat= d*100000
-	return resultat
-
-float()

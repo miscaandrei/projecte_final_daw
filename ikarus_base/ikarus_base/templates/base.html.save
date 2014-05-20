@@ -1,0 +1,108 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+    lang="{% firstof LANGUAGE_CODE 'en' %}">
+  <head>
+    <title>{% block title %}{% endblock %} - Nonrel-testapp</title>
+
+    {% block css %}
+    {% endblock %}
+	<link rel="stylesheet" href="{{STATIC_URL}}{{STATIC_URL}}css/theme.css"/>
+    {% block preload_js %}
+    {% endblock %}
+
+    {% block extra-head %}{% endblock %}
+  </head>
+
+  <body>
+	<div class="menu-content">
+		<div class="menu">
+			<div class="logo">
+				<img src="{{STATIC_URL}}images/logo.png" />
+			</div>
+			<ul>
+				<li>
+					<a href="/">Portada</a>
+				</li>
+				<li>
+					Coleccions
+				</li>
+				<li>
+					Ranking
+				</li>
+				<li>
+					Contacte
+				</li>
+				<li>
+					Ajuda
+				</li>
+				<li>
+					<a href="/accounts/login/">Sign-in</a>
+				</li>
+			</ul>
+			<div class="letras">
+				<img src="{{STATIC_URL}}images/letras.png" />
+			</div>
+		</div>
+	</div>
+    <div id="nav-top-hor">
+    	<div id="nav-top-hor-left">
+    		<a id="link" href="/">Inici</a>
+	    	<a id="link" href="/image">image_log</a>
+	    	<a id="link" href="/d_image">image</a>
+    	</div>
+
+    	<div id="nav-top-hor-right" align="right">
+    		{% if user.is_authenticated %}
+    		<p>Wellcome {{ user.username }} </p>
+	    	<a id="link" href="/accounts/logout/">Log Out</a>
+	    	<a id="link" href="/profile">Profile</a>
+	    	<a id="link" href="/inventory">Inventari</a>
+	    	{% else %}
+	    	<a id="link" href="/accounts/login/">Sign In</a>
+	    	{% endif %}
+    	</div>
+    	
+
+    </div>
+
+    <div id="header" align="center">
+      <h2>Welcome to the</h2>
+      <h1>Ikarus App Project</h1>
+    </div>
+    
+
+    <div class="columns">
+      <div id="content" class="column">
+        {% block content-header %}
+          {% if error %}<div class="error">{{ error }}</div>{% endif %}
+          {% if info %}<div class="info">{{ info }}</div>{% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="info">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id="sidebar" class="column">
+        {% block sidebar %}
+        
+        {% endblock %}
+      </div>
+    </div>
+
+    <div id="footer">
+      <p>GitHub Project <a href="https://github.com/miscaandrei/projecte_final_daw">Ikarus</a></p>
+      <p>Documentacion <a href="https://github.com/miscaandrei/projecte_final_daw/wiki">Wiki</a></p>
+    </div>
+
+    {% block js %}
+    {% endblock %}
+  </body>
+</html>

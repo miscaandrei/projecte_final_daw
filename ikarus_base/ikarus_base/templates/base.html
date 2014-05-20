@@ -2,150 +2,175 @@
 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
-    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
-    lang="{% firstof LANGUAGE_CODE 'en' %}">
-  <head>
-    <title>{% block title %}{% endblock %} - Nonrel-testapp</title>
+dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+lang="{% firstof LANGUAGE_CODE 'en' %}">
+	<head>
+		<title>{% block title %}{% endblock %} - Nonrel-testapp</title>
 
-    {% block css %}
-    {% endblock %}
-	<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
-    {% block preload_js %}
-    {% endblock %}
+		{% block css %}
+		{% endblock %}
+		<script type="text/javascript">
+			var require = {
+				baseUrl : '{{ STATIC_URL }}'
+			};
+		</script>
+		<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
+		<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
+		<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
+		{% block preload_js %}
+		{% endblock %}
 
-    {% block extra-head %}{% endblock %}
-  </head>
+		{% block extra-head %}{% endblock %}
+	</head>
 
-  <body>
-	<div class="menu-content">
-		<div class="menu">
-			<div class="logo">
-				<img src="{{STATIC_URL}}images/logo.png" />
-			</div>
-			<ul>
-				<li>
-					<a href="/">Portada</a>
-				</li>
-				<li>
-					Coleccions
-				</li>
-				<li>
-					Ranking
-				</li>
-				<li>
-					Contacte
-				</li>
-				<li>
-					Ajuda
-				</li>
-			{% if user.is_authenticated %}
-				 <li>
-					<a id="link" href="/profile">Profile</a>
-                		 </li>
-				 <li>
-					<a id="link" href="/inventory">Inventari</a>
-                		</li>
-                                 <li>
-                                        <a id="link" href="/accounts/logout/">Log-out</a>
-                                 </li>
-			</ul>
-                	<div>Wellcome {{ user.username }} </div>
-			{% else %}
+	<body onload="init()">
+		<noscript>
+			<p style="color: #A00; font-weight: bold">
+				Sorry, but this page requires JavaScript!
+			</p>
+		</noscript>
+		<div class="menu-content">
+			<div class="menu">
+				<div class="logo">
+					<img src="{{STATIC_URL}}images/logo.png" />
+				</div>
+				<ul>
+					<li>
+						<a href="/">Portada</a>
+					</li>
+					<li>
+						Coleccions
+					</li>
+					<li>
+						Ranking
+					</li>
+					<li>
+						Contacte
+					</li>
+					<li>
+						Ajuda
+					</li>
+					{% if user.is_authenticated %}
+					<li>
+						<a id="link" href="/profile">Profile</a>
+					</li>
+					<li>
+						<a id="link" href="/inventory">Inventari</a>
+					</li>
+					<li>
+						<a id="link" href="/accounts/logout/">Log-out</a>
+					</li>
+				</ul>
+				<div>
+					Wellcome {{ user.username }}
+				</div>
+				{% else %}
 				<li>
 					<a href="/accounts/login/">Sign-in</a>
 				</li>
-			</ul>
-                	{% endif %}
-			<div class="letras">
-				<img src="{{STATIC_URL}}images/letras.png" />
-			</div>
-		</div>
-	</div>
-	<div class="top">
-		<div class="breadcrumb">
-			Welcome to the Ikarus App Project
-		</div>
-	</div>
-	<div class="wrapper">
-		<div id="slider-wrapper">
-			<div class="inner-wrapper">
-				<input checked type="radio" name="slide" class="control" id="Slide1"/>
-				<label for="Slide1" id="s1"></label>
-				<input type="radio" name="slide" class="control" id="Slide2"/>
-				<label for="Slide2" id="s2"></label>
-				<input type="radio" name="slide" class="control" id="Slide3"/>
-				<label for="Slide3" id="s3"></label>
-				<input type="radio" name="slide" class="control" id="Slide4"/>
-				<label for="Slide4" id="s4"></label>
-				<div class="overflow-wrapper">
-					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+				</ul>
+				{% endif %}
+				<div class="letras">
+					<img src="{{STATIC_URL}}images/letras.png" />
 				</div>
 			</div>
 		</div>
-		<div class="content">
-			<ul>
-			<li class="content-left">
-			<ul>
-			<li><img src="images/user.png"/>
-			</li>
-			</ul>
-			</li>
-
-			</ul>
-			<div class="desc">
-        <div id="nav-top-hor-left">
-                <a id="link" href="/">Inici</a>
-                <a id="link" href="/image">image_log</a>
-                <a id="link" href="/d_image">image</a>
-        </div>
-    <div class="columns">
-      <div id="content" class="column">
-        {% block content-header %}
-          {% if error %}<div class="error">{{ error }}</div>{% endif %}
-          {% if info %}<div class="info">{{ info }}</div>{% endif %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="info">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endblock %}
-
-        {% block content %}{% endblock %}
-      </div>
-
-      <div id="sidebar" class="column">
-        {% block sidebar %}
-
-        {% endblock %}
-      </div>
-    </div>
-	</div>
-		</div>
-		<div class="footer">
-		<div class="footer-content">
-			<canvas width="500" height="500" id="cnvs"></canvas>	
-			<div class="text-footer"> 
-			 Ikarus App 2014 . Todos los derechos reservados | Condiciones legales | Politica de privacidad
+		<div class="top">
+			<div class="breadcrumb">
+				Welcome to the Ikarus App Project
 			</div>
-			<div class="img-footer">
-				<img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
-			</div>	
-			<div class="img-footer">
-                                <img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
-                        </div>
-			<div class="img-footer">
-                                <img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
-                        </div>
-
-      <p>GitHub Project <a href="https://github.com/miscaandrei/projecte_final_daw">Ikarus</a></p>
-      <p>Documentacion <a href="https://github.com/miscaandrei/projecte_final_daw/wiki">Wiki</a></p>
-
 		</div>
-	</div>
-	</div>  
-</body>
+		<div class="wrapper">
+			<div id="slider-wrapper">
+				<div class="inner-wrapper">
+					<input checked type="radio" name="slide" class="control" id="Slide1"/>
+					<label for="Slide1" id="s1"></label>
+					<input type="radio" name="slide" class="control" id="Slide2"/>
+					<label for="Slide2" id="s2"></label>
+					<input type="radio" name="slide" class="control" id="Slide3"/>
+					<label for="Slide3" id="s3"></label>
+					<input type="radio" name="slide" class="control" id="Slide4"/>
+					<label for="Slide4" id="s4"></label>
+					<div class="overflow-wrapper">
+						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="desc">
+					{% block content %}{% endblock %}
+					<!-- <div id="nav-top-hor-left">
+					<a id="link" href="/">Inici</a>
+					<a id="link" href="/image">image_log</a>
+					<a id="link" href="/d_image">image</a>
+					</div> -->
+					<div class="columns">
+						<div id="content" class="column">
+							{% block content-header %}
+							{% if error %}
+							<div class="error">
+								{{ error }}
+							</div>
+							{% endif %}
+							{% if info %}
+							<div class="info">
+								{{ info }}
+							</div>{% endif %}
+							{% if messages %}
+							{% for message in messages %}
+							<div class="info">
+								{{ message }}
+							</div>
+							{% endfor %}
+							{% endif %}
+							{% endblock %}
+
+							
+						</div>
+
+						<div id="sidebar" class="column">
+							{% block sidebar %}
+
+							{% endblock %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="footer-content">
+					<canvas width="500" height="500" id="cnvs"></canvas>
+					<div class="text-footer">
+						Ikarus App 2014 . Todos los derechos reservados | Condiciones legales | Politica de privacidad
+					</div>
+					<div class="img-footer">
+						<a href="https://github.com/miscaandrei/projecte_final_daw">
+							<img class="lacetania" src="{{STATIC_URL}}images/git.png" />
+						</a>
+					</div>
+					<div class="img-footer">
+						<a href="https://github.com/miscaandrei/projecte_final_daw/wiki">
+							<img class="lacetania" src="{{STATIC_URL}}images/wiki.png" />
+						</a>
+					</div>
+					<div class="img-footer">
+						<a href="http://www.infla.cat/web/">
+							<img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
+						</a>
+					</div>
+
+					<p>
+						GitHub Project <a href="https://github.com/miscaandrei/projecte_final_daw">Ikarus</a>
+					</p>
+					<p>
+						Documentacion <a href="https://github.com/miscaandrei/projecte_final_daw/wiki">Wiki</a>
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
