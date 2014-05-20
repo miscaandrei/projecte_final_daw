@@ -207,7 +207,7 @@ def json_movile_geo_objects(request):
 
 
 
-def torna_geo_items():
+def torna_geo_items(longitude_user,latitude_user):
 	lista_id_objectes=[10025, 10026, 10023, 10024, 10027]
 
 	lista={"datos":[]}
