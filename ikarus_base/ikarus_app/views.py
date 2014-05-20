@@ -183,7 +183,7 @@ def json_movile_geo_objects(request):
 		print "| Latitude: " + latitude 
 		print "| Searching for data . . . "
 
-		resultat = torna_items()
+		resultat = torna_geo_items()
 
 		print "| Data Found!"
 		print "| Sending response to client!"
@@ -206,7 +206,7 @@ def json_movile_geo_objects(request):
 
 
 def torna_geo_items():
-	lista_id_objectes=[10025, 10026]
+	lista_id_objectes=[10025, 10026, 10023, 10024]
 	lista={"datos":[]}
 
 	for i in lista_id_objectes:
