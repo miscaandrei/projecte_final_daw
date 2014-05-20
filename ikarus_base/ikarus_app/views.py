@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 from django.contrib.auth import authenticate, login
+import math
 
 # Create your views here.
 def home(request):
@@ -171,8 +172,8 @@ def json_movile_geo_objects(request):
 	if request.method == 'POST':
 		decoded_json = json.loads(request.body)
 		#user = User.objects.filter(username=decoded_json['username'])
-		longitude = decoded_json['longitude']
-		latitude = decoded_json['latitude']
+		longitude_user = decoded_json['longitude']
+		latitude_user = decoded_json['latitude']
 
 		#mostrar que hem rebut els datos7
 		print "+-------------# SERVER #-------------"
@@ -183,7 +184,7 @@ def json_movile_geo_objects(request):
 		print "| Latitude: " + latitude 
 		print "| Searching for data . . . "
 
-		resultat = torna_geo_items()
+		resultat = torna_geo_items(longitude_user,latitude_user)
 
 		print "| Data Found!"
 		print "| Sending response to client!"
@@ -205,15 +206,26 @@ def json_movile_geo_objects(request):
 	return HttpResponse(resultat, mimetype='application/json')
 
 
-def torna_geo_items():
+def torna_geo_items(longitude_user, latitude_user):
 	lista_id_objectes=[10025, 10026]
 	lista={"datos":[]}
 
 	for i in lista_id_objectes:
 		item = Objecte.objects.get(ref_objecte=i)
+		if calcul_distancia_2_punts()
 		dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
 		lista["datos"].append(dic)
 
 	resultat=simplejson.dumps(lista)
 	print resultat
+	return resultat
+
+
+
+
+
+def calcul_distancia_2_punts(x1,y1,x2,y2):
+	suma = (x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)
+	d=math.sqrt(suma)
+	resultat= d*100000
 	return resultat
