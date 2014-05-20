@@ -158,13 +158,9 @@ def json_movile_geo_objects(request):
 		print longitude
 		print latitude
 		resultat = "OK! dades rebudes"
-		objecte_1=Objecte.objects.get(ref_objecte=10025)
-		dic_1 = {"longitude":objecte_1.longitude, "latitude":objecte_1.latitude, "nom":objecte_1.nom}
-		lista=[]
-		objecte_2=Objecte.objects.get(ref_objecte=10026)	
-		dic_2 = {"longitude":objecte_2.longitude, "latitude":objecte_2.latitude, "nom":objecte_2.nom}
-		lista={"datos":[dic_1, dic_2]}
-		resultat=simplejson.dumps(lista)
+		objecte=Objecte.objects.get(ref_objecte=10025)
+		dic = {"longitude":objecte.longitude, "latitude":objecte.latitude}
+		resultat=simplejson.dumps(dic)
 		print resultat
 		print "enviant resposta "
 		return HttpResponse(resultat, mimetype='application/json')

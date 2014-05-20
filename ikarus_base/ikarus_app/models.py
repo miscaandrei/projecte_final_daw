@@ -4,6 +4,7 @@ from django.db.models.signals import post_save # despres de crear el usuari de s
 from django.contrib.gis.db import models
 from django.contrib import admin
 from models_admin import *
+
 # Create your models here.
 
 
@@ -35,6 +36,8 @@ class Objecte(models.Model):
 	arxiu=models.CharField(max_length=250) # objecte desat en format JSON
 	dimensions=models.CharField(max_length=250) #lista JSON amb x,y,z
 	posicio=models.CharField(max_length=250) #desa dins l'ubicacio en forma deJSOn amb Lon Lat
+	latitude=models.CharField(max_length=250)
+	longitude=models.CharField(max_length=250)
 
 
 class Quest(models.Model):

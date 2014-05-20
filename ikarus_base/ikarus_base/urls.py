@@ -7,8 +7,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+import os
 
-
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))  
 
 admin.autodiscover()
 
@@ -32,6 +33,6 @@ urlpatterns = patterns('',
     url(r'^inventory/', 'ikarus_app.views.user_inventory', name='Inventory'),
     url(r'^json/', 'ikarus_app.views.json_auth_web_service_out', name='JSON'),
     url(r'^json_in/', 'ikarus_app.views.json_auth_web_service_in'),
-)
-
-
+    url(r'^json_map/', 'ikarus_app.views.json_movile_geo_objects'),
+    url(r'^image_test/', 'ikarus_app.views.d_image_test', name='Image Test'),
+)  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #very important my friend
