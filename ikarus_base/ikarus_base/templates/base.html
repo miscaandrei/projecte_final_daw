@@ -62,9 +62,6 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 						<a id="link" href="/accounts/logout/">Log-out</a>
 					</li>
 				</ul>
-				<div>
-					Wellcome {{ user.username }}
-				</div>
 				{% else %}
 				<li>
 					<a href="/accounts/login/">Sign-in</a>
@@ -79,6 +76,9 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 		<div class="top">
 			<div class="breadcrumb">
 				Welcome to the Ikarus App Project
+				{% if user.is_authenticated %}	
+				<div class="welcome">Benvingut {{ user.username }} !</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="wrapper">
@@ -144,31 +144,23 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				<div class="footer-content">
 					<canvas width="500" height="500" id="cnvs"></canvas>
 					<div class="text-footer">
-						Ikarus App 2014 . Todos los derechos reservados | Condiciones legales | Politica de privacidad
+						Ikarus App | 2014 Manresa, Barcelona 08240
 					</div>
 					<div class="img-footer">
-						<a href="https://github.com/miscaandrei/projecte_final_daw">
-							<img class="lacetania" src="{{STATIC_URL}}images/git.png" />
+						<a href="https://github.com/miscaandrei/projecte_final_daw" target="_blank" title="Arxius del Projecte" alt="Arxius del Projecte">
+							<img class="logo-footer" src="{{STATIC_URL}}images/git.png"/>
 						</a>
 					</div>
 					<div class="img-footer">
-						<a href="https://github.com/miscaandrei/projecte_final_daw/wiki">
-							<img class="lacetania" src="{{STATIC_URL}}images/wiki.png" />
+						<a href="https://github.com/miscaandrei/projecte_final_daw/wiki" target="_blank" title="Documentació" alt="Documentació">
+							<img class="logo-footer" src="{{STATIC_URL}}images/wiki.png" />
 						</a>
 					</div>
 					<div class="img-footer">
-						<a href="http://www.infla.cat/web/">
-							<img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
+						<a href="http://www.infla.cat/web/" target="_blank" title="infla.cat" alt="infla.cat">
+							<img class="logo-footer" src="{{STATIC_URL}}images/lacetania.png"/>
 						</a>
 					</div>
-
-					<p>
-						GitHub Project <a href="https://github.com/miscaandrei/projecte_final_daw">Ikarus</a>
-					</p>
-					<p>
-						Documentacion <a href="https://github.com/miscaandrei/projecte_final_daw/wiki">Wiki</a>
-					</p>
-
 				</div>
 			</div>
 		</div>
