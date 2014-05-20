@@ -183,7 +183,7 @@ def json_movile_geo_objects(request):
 		print "| Latitude: " + latitude 
 		print "| Searching for data . . . "
 
-		resultat = torna_items()
+		resultat = torna_geo_items()
 
 		print "| Data Found!"
 		print "| Sending response to client!"
