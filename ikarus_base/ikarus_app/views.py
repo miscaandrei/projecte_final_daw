@@ -214,7 +214,7 @@ def torna_geo_items(longitude_user,latitude_user):
 
 	for i in lista_id_objectes:
 		item = Objecte.objects.get(ref_objecte=i)
-		if calcul_distancia_2_punts(longitude_user, latitude_user, item.longitude, item.latitude) <=1000:
+		if calcul_distancia_2_punts(longitude_user, latitude_user, item.longitude, item.latitude) <=500:
 			dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
 			lista["datos"].append(dic)
 		else:
