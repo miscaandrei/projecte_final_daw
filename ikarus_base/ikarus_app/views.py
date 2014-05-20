@@ -106,7 +106,7 @@ def mobile_app(request):
 	return render( request, "base.html")
 
 
-def json_auth_web_service_out(request):
+def json_auth_web_service_out(request): # test data
 	some_data_to_dump = {
 	'nom': 'foo',
 	'coord': '24 , 45 ',
@@ -119,21 +119,40 @@ def json_auth_web_service_in(request):
 	if request.method == 'POST':
 		decoded_json = json.loads(request.body)
 		#user = User.objects.filter(username=decoded_json['username'])
+		
+		print "+-------------# SERVER #-------------"
+		print "| Request received! \n|Autentification started"
+		print "| ...\n"
+
 		username = decoded_json['username']
 		password = decoded_json['password']
 		user = authenticate(username=username, password=password)
+
+
 		if user: 
-			print "ok. loged in"
+			print "| Successful! User: "+ username+" has Loged In!"
+			print "| ---> END OF COMUNICATION <---"
+			print "+------------------------------------ \n\n\n"
+
 			resultat= get_user_object_to_json(user)
 			return HttpResponse(resultat, mimetype='application/json')
 			
 		else:
-			print "invalid"
+			print "| Access Denied! \n| Log In FAILED!\n| Please check Username and/or Password!"
+			print "| ---> END OF COMUNICATION <---"
+			print "+------------------------------------ \n\n\n"
+
+			resultat="Server: Access Denied! Log In FAILED! Please check Username and/or Password! "
+			return HttpResponse(resultat, mimetype='application/json')
 			
 	else:
-		print "login error"
+		print "+-------------# SERVER #-------------"
+		print "| Request restricted to POST method"
+		print "| Access Denied! \n | This attempt will be reported to the admins!"
+		print "| ---> END OF COMUNICATION <---"
+		print "+------------------------------------ \n\n\n"
 
-	resultat="Log In ERROR"
+	resultat="Server: Access Denied! Request restricted to POST method"
 	return HttpResponse(resultat, mimetype='application/json')
 	
 			
@@ -154,23 +173,48 @@ def json_movile_geo_objects(request):
 		#user = User.objects.filter(username=decoded_json['username'])
 		longitude = decoded_json['longitude']
 		latitude = decoded_json['latitude']
-		print "dades rebudes "
-		print longitude
-		print latitude
-		resultat = "OK! dades rebudes"
-		objecte_1=Objecte.objects.get(ref_objecte=10025)
-		dic_1 = {"longitude":objecte_1.longitude, "latitude":objecte_1.latitude, "nom":objecte_1.nom}
-		lista=[]
-		objecte_2=Objecte.objects.get(ref_objecte=10026)	
-		dic_2 = {"longitude":objecte_2.longitude, "latitude":objecte_2.latitude, "nom":objecte_2.nom}
-		lista={"datos":[dic_1, dic_2]}
-		resultat=simplejson.dumps(lista)
-		print resultat
-		print "enviant resposta "
+
+		#mostrar que hem rebut els datos7
+		print "+-------------# SERVER #-------------"
+		print "| Incoming request for Geo Location Items!"
+		print "| . . . "
+		print "| OK! Data has been received!"
+		print "| Longitude: " +longitude
+		print "| Latitude: " + latitude 
+		print "| Searching for data . . . "
+
+		resultat = torna_items()
+
+		print "| Data Found!"
+		print "| Sending response to client!"
+		print "| ---> END OF COMUNICATION <---"
+		print "+------------------------------------ \n\n\n"
+
+
 		return HttpResponse(resultat, mimetype='application/json')
 			
 	else:
-		print "UPS! res rebut  error"
-		resultat="ERROR, no funciona del servidor "
+		print "+-------------# SERVER #-------------"
+		print "| Incoming request for Geo Location Items!"
+		print "| ERROR! No data received!!"
+		print "| ---> END OF COMUNICATION <---"
+		print "+------------------------------------ \n\n\n"
+		
+		resultat="SERVER: ERROR! No data received!!"
+
 	return HttpResponse(resultat, mimetype='application/json')
-	
+
+
+def torna_geo_items():
+	lista_id_objectes=[10025, 10026]
+	lista={"datos":[]}
+
+	for i in lista_id_objectes:
+		item = Objecte.objects.get(ref_objecte=i)
+		dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
+		lista["datos"].append(dic)
+
+	resultat=simplejson.dumps(lista)
+	print resultat
+	return resultat
+
