@@ -37,8 +37,7 @@ TIME_ZONE = 'America/Chicago'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
-
-SITE_ID = '5367d490245f2312749b0ab6'
+SITE_ID = '537a1746a85e04229a9b98b3'
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
