@@ -21,7 +21,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<div class="menu-content">
 		<div class="menu">
 			<div class="logo">
-				<img src="images/logo.png" />
+				<img src="{{STATIC_URL}}images/logo.png" />
 			</div>
 			<ul>
 				<li>
@@ -39,42 +39,69 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 				<li>
 					Ajuda
 				</li>
+			{% if user.is_authenticated %}
+				 <li>
+					<a id="link" href="/profile">Profile</a>
+                		 </li>
+				 <li>
+					<a id="link" href="/inventory">Inventari</a>
+                		</li>
+                                 <li>
+                                        <a id="link" href="/accounts/logout/">Log-out</a>
+                                 </li>
+			</ul>
+                	<div>Wellcome {{ user.username }} </div>
+			{% else %}
 				<li>
 					<a href="/accounts/login/">Sign-in</a>
 				</li>
 			</ul>
+                	{% endif %}
 			<div class="letras">
-				<img src="images/letras.png" />
+				<img src="{{STATIC_URL}}images/letras.png" />
 			</div>
 		</div>
 	</div>
-    <div id="nav-top-hor">
-    	<div id="nav-top-hor-left">
-    		<a id="link" href="/">Inici</a>
-	    	<a id="link" href="/image">image_log</a>
-	    	<a id="link" href="/d_image">image</a>
-    	</div>
+	<div class="top">
+		<div class="breadcrumb">
+			Welcome to the Ikarus App Project
+		</div>
+	</div>
+	<div class="wrapper">
+		<div id="slider-wrapper">
+			<div class="inner-wrapper">
+				<input checked type="radio" name="slide" class="control" id="Slide1"/>
+				<label for="Slide1" id="s1"></label>
+				<input type="radio" name="slide" class="control" id="Slide2"/>
+				<label for="Slide2" id="s2"></label>
+				<input type="radio" name="slide" class="control" id="Slide3"/>
+				<label for="Slide3" id="s3"></label>
+				<input type="radio" name="slide" class="control" id="Slide4"/>
+				<label for="Slide4" id="s4"></label>
+				<div class="overflow-wrapper">
+					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+					<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul>
+			<li class="content-left">
+			<ul>
+			<li><img src="images/user.png"/>
+			</li>
+			</ul>
+			</li>
 
-    	<div id="nav-top-hor-right" align="right">
-    		{% if user.is_authenticated %}
-    		<p>Wellcome {{ user.username }} </p>
-	    	<a id="link" href="/accounts/logout/">Log Out</a>
-	    	<a id="link" href="/profile">Profile</a>
-	    	<a id="link" href="/inventory">Inventari</a>
-	    	{% else %}
-	    	<a id="link" href="/accounts/login/">Sign In</a>
-	    	{% endif %}
-    	</div>
-    	
-
-    </div>
-
-    <div id="header" align="center">
-      <h2>Welcome to the</h2>
-      <h1>Ikarus App Project</h1>
-    </div>
-    
-
+			</ul>
+			<div class="desc">
+        <div id="nav-top-hor-left">
+                <a id="link" href="/">Inici</a>
+                <a id="link" href="/image">image_log</a>
+                <a id="link" href="/d_image">image</a>
+        </div>
     <div class="columns">
       <div id="content" class="column">
         {% block content-header %}
@@ -92,17 +119,33 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
       <div id="sidebar" class="column">
         {% block sidebar %}
-        
+
         {% endblock %}
       </div>
     </div>
+	</div>
+		</div>
+		<div class="footer">
+		<div class="footer-content">
+			<canvas width="500" height="500" id="cnvs"></canvas>	
+			<div class="text-footer"> 
+			 Ikarus App 2014 . Todos los derechos reservados | Condiciones legales | Politica de privacidad
+			</div>
+			<div class="img-footer">
+				<img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
+			</div>	
+			<div class="img-footer">
+                                <img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
+                        </div>
+			<div class="img-footer">
+                                <img class="lacetania" src="{{STATIC_URL}}images/lacetania.png" />
+                        </div>
 
-    <div id="footer">
       <p>GitHub Project <a href="https://github.com/miscaandrei/projecte_final_daw">Ikarus</a></p>
       <p>Documentacion <a href="https://github.com/miscaandrei/projecte_final_daw/wiki">Wiki</a></p>
-    </div>
 
-    {% block js %}
-    {% endblock %}
-  </body>
+		</div>
+	</div>
+	</div>  
+</body>
 </html>
