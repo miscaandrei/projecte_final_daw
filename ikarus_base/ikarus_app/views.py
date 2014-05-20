@@ -230,8 +230,9 @@ def torna_geo_items(longitude_user,latitude_user):
 
 
 def calcul_distancia_2_punts(x1,y1,x2,y2):
-	suma = (x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)
+	suma = (float(x2)-float(x1))*(float(x2)-float(x1))+(float(y2)-float(y1))*(float(y2)-float(y1))
 	d=math.sqrt(suma)
 	resultat= d*100000
 	return resultat
 
+float()
