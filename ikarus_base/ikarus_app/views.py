@@ -143,7 +143,7 @@ def json_auth_web_service_in(request):
 			print "| ---> END OF COMUNICATION <---"
 			print "+------------------------------------ \n\n\n"
 
-			resultat="Server: Access Denied! Log In FAILED! Please check Username and/or Password! "
+			resultat="Server: Check Username and/or Password! "
 			return HttpResponse(resultat, mimetype='application/json')
 			
 	else:
