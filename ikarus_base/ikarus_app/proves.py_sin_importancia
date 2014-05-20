@@ -1,0 +1,42 @@
+objecte_1=Objecte.objects.get(ref_objecte=10025)
+dic_1 = {"longitude":objecte_1.longitude, "latitude":objecte_1.latitude, "nom":objecte_1.nom}
+lista=[]
+objecte_2=Objecte.objects.get(ref_objecte=10026)	
+dic_2 = {"longitude":objecte_2.longitude, "latitude":objecte_2.latitude, "nom":objecte_2.nom}
+lista={"datos":[dic_1, dic_2]}
+resultat=simplejson.dumps(lista)
+print resultat
+
+
+
+
+
+lista_id_objectes=[10025, 10026]
+lista={"datos":[]}
+
+for i in lista_id_objectes:
+	item = Objecte.objects.get(ref_objecte=i)
+	dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
+	lista["datos"].append(dic)
+
+resultat=simplejson.dumps(lista)
+print resultat
+
+
+
+# resultat q funciona
+{"datos": [
+			{"latitude": "41.737018", "nom": "estaca", "longitude": "1.829050"},
+			{"latitude": "41.740216", "nom": "estaca_2", "longitude": "1.833762"}
+		  ]
+}
+
+
+
+
+
+{"datos": [
+			{"latitude": "41.737018", "nom": "estaca", "longitude": "1.829050"}, 
+			{"latitude": "41.740216", "nom": "estaca_2", "longitude": "1.833762"}
+		  ]
+}
