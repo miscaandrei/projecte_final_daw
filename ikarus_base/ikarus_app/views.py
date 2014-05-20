@@ -180,8 +180,8 @@ def json_movile_geo_objects(request):
 		print "| Incoming request for Geo Location Items!"
 		print "| . . . "
 		print "| OK! Data has been received!"
-		print "| Longitude: " +longitude
-		print "| Latitude: " + latitude 
+		print "| Longitude: " +longitude_user
+		print "| Latitude: " + latitude_user 
 		print "| Searching for data . . . "
 
 		resultat = torna_geo_items(longitude_user,latitude_user)
