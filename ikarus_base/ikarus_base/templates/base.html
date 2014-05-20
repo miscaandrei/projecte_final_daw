@@ -10,6 +10,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
     {% block css %}
     {% endblock %}
+<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
 	<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
     {% block preload_js %}
     {% endblock %}
@@ -17,7 +19,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     {% block extra-head %}{% endblock %}
   </head>
 
-  <body>
+  <body onload="init()">
+	<noscript>
+		<p style="color: #A00; font-weight: bold">
+			Sorry, but this page requires JavaScript!
+		</p>
+	</noscript>
 	<div class="menu-content">
 		<div class="menu">
 			<div class="logo">
