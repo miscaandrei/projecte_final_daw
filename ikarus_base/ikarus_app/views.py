@@ -153,7 +153,7 @@ def json_auth_web_service_in(request):
 		print "| ---> END OF COMUNICATION <---"
 		print "+------------------------------------ \n\n\n"
 
-	resultat="Server: Access Denied! Request restricted to POST method"
+	resultat="Server: Access Denied! /br Request restricted to POST method"
 	return HttpResponse(resultat, mimetype='application/json')
 	
 			
