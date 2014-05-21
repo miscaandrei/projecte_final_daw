@@ -245,10 +245,11 @@ def torna_objecte_user(request):
 	llista_objectes=json.loads(client.inventory)
 
 	dicionario_objectes={}
+	urls=[]
 	i=1;
 	for ref in llista_objectes:
 		item = Objecte.objects.get(ref_objecte=ref)
-		dicionario_objectes.update({i:[item.nom, item.description, item.arxiu, item.latitude, item.longitude]})
+		dicionario_objectes.update({i:[item.nom, item.description, item.arxiu, item.latitude, item.longitude,]})		
 		i+=1
 
 	#for a in dicionario_objectes:
@@ -263,3 +264,14 @@ def torna_objecte_user(request):
 
 	
 
+
+@login_required
+def json_render(request):
+	us = request.user.username #primer buscar el usuari de la sessio
+	user=User.objects.get(username=us) # desar el objecte coresponent a USER
+	client=Client.objects.get(username=user) # buscar el client que te relacio directa amb el USER desat
+	llista_objectes=json.loads(client.inventory)
+	item = Objecte.objects.get(ref_objecte=llista_objectes[0])
+	objecte_d = item.arxiu
+
+	return render( request, "3drender.html", {"json": objecte_d}) 

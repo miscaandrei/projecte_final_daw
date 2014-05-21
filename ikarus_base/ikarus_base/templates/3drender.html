@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+{% endif %}
+<h3>RENDER 3D</h3>
+
+<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
+
+{% endblock %}

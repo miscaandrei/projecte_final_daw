@@ -33,7 +33,7 @@ class Objecte(models.Model):
 	ref_objecte=models.IntegerField()
 	nom=models.CharField(max_length=250)
 	description=models.CharField(max_length=250)
-	arxiu=models.CharField(max_length=250) # objecte desat en format JSON
+	arxiu=models.TextField() # objecte desat en format JSON
 	dimensions=models.CharField(max_length=250) #lista JSON amb x,y,z
 	posicio=models.CharField(max_length=250) #desa dins l'ubicacio en forma deJSOn amb Lon Lat
 	latitude=models.CharField(max_length=250)

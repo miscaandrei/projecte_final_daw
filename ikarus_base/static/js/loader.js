@@ -149,7 +149,7 @@ function modelLoadedCallback(geometry, materials) {
  * color for the renderer (since black background doesn't work for all
  * of the models.
  */
-function installModel(file, bgColor) {
+function installModel(file) {
 	if (model) {
 		scene.remove(model);
 	}
@@ -249,7 +249,7 @@ function init() {
 		camera = new THREE.PerspectiveCamera(50, theCanvas.width / theCanvas.height, 0.1, 100);
 		camera.position.z = 30;
 		createWorld();
-		installModel("Azwarius.js");
+		installModel("objects/Azwarius.js");
 		render();
 		document.addEventListener("keydown", doKey, false);
 		//document.getElementById("r1").checked = true;
