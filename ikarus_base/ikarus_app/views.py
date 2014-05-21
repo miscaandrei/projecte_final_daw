@@ -213,7 +213,7 @@ def torna_geo_items(longitude_user,latitude_user):
 	for i in lista_id_objectes:
 		item = Objecte.objects.get(ref_objecte=i)
 		if calcul_distancia_2_punts(longitude_user, latitude_user, item.longitude, item.latitude) <=800:
-			dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom}
+			dic = {"longitude":item.longitude, "latitude":item.latitude, "nom":item.nom, "ref_objecte":item.ref_objecte}
 			lista["datos"].append(dic)
 		else:
 			pass
@@ -233,4 +233,33 @@ def calcul_distancia_2_punts(x1,y1,x2,y2):
 	resultat= d*100000
 	return resultat
 
-float()
+
+@login_required
+def torna_objecte_user(request):
+	#anem a buscar el client despres de demanara el usuari registrat
+	us = request.user.username #primer buscar el usuari de la sessio
+	user=User.objects.get(username=us) # desar el objecte coresponent a USER
+	client=Client.objects.get(username=user) # buscar el client que te relacio directa amb el USER desat
+
+	# Agafem la llista de objectes del usuari i l'hi afegim un de mes, amb ref de objecte	
+	llista_objectes=json.loads(client.inventory)
+
+	dicionario_objectes={}
+	i=1;
+	for ref in llista_objectes:
+		item = Objecte.objects.get(ref_objecte=ref)
+		dicionario_objectes.update({i:[item.nom, item.description, item.arxiu, item.latitude, item.longitude]})
+		i+=1
+
+	#for a in dicionario_objectes:
+	#	print a
+	#	for b in dicionario_objectes[a]:
+	#		print b
+
+
+
+
+	return render( request, "inventory.html", {"dicionari": dicionario_objectes}) #aixo ja funciona
+
+	
+
