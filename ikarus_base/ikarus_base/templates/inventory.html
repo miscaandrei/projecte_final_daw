@@ -1,10 +1,9 @@
 	{% extends "base.html" %}
-
+{% block title %}Inventari{% endblock %}
 {% block content %}
 
 {% if form.errors %}
 {% endif %}
-<h3>Inventari</h3>
 
 {% for a in dicionari.items %}
 	<ul>

@@ -13,8 +13,9 @@ body, html {
 	color: rgb(172, 172, 172);
 }
 div.wrapper {
-	min-height: calc( 100% + 30px );
+	min-height: calc( 100% - 15px );
 	position: relative;
+	margin: 95px auto 30px auto;
 }
 canvas#cnvs {
 	position: absolute;
@@ -72,7 +73,7 @@ div.menu-content ul li:hover {
 div.content {
 	width: 960px;
 	position: relative;
-	overflow: auto;
+	/*overflow: auto;*/
 	margin: 0 auto;
 	padding: 10px 0 10px 0;
 	box-shadow: 0px -5px 0px 0px rgb(255, 153, 0);
@@ -162,7 +163,7 @@ div.footer {
 	height: 40px;
 	background-image: url('../images/background_b.jpg');
 	background-size: cover;
-	margin: 5px 0 0 0;
+	margin: -40px 0 0 0;
 	z-index: 99;
 }
 div.breadcrumb {
@@ -208,7 +209,6 @@ div.footer-content {
 #slider-wrapper {
 	width: 100%;
 	height: 250px;
-	margin: 50px auto;
 	position: relative;
 	margin-bottom: 0px;
 	background: rgba(0,0,0,0.5);
@@ -354,4 +354,26 @@ div.welcome {
 	margin: 4px 0 0 0;
 	color: rgb(202, 157, 77);
 }
+div.content-loader {
+	width: 960px;
+	position: relative;
+	overflow: auto;
+	margin: 0 auto;
+	z-index: 9;
+}
+#panel {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	margin-left: -180px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+}
+#map-canvas {
+	height: 400px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px
 }

@@ -1,5 +1,62 @@
 {% extends "base.html" %}
-
+{% block title %}Welcome to the Ikarus App Project{% endblock %}
 {% block content %}
-Un joc / experiència on el jugador pugui arribar a materialitzar aquells elements del joc que li resultin interessants. L’experiència del jugador seria: primer tindria una fase on buscaria i localitzaria elements (objectes o criatures) en 3D, per afegir-los a la seva col·lecció, aquesta col·lecció la podrà anar revisant a través del mòbil o la web i comparar-la amb altres usuaris, mentre interactua amb ells com a una xarxa social. A part ens agradaria que com extra l’usuari pugui arribar a crear aquests elements gràcies a una impressora 3D, aconseguint així figuretes reals dels elements en 3D.
+<div id="slider-wrapper">
+	<div class="inner-wrapper">
+		<input checked type="radio" name="slide" class="control" id="Slide1"/>
+		<label for="Slide1" id="s1"></label>
+		<input type="radio" name="slide" class="control" id="Slide2"/>
+		<label for="Slide2" id="s2"></label>
+		<input type="radio" name="slide" class="control" id="Slide3"/>
+		<label for="Slide3" id="s3"></label>
+		<input type="radio" name="slide" class="control" id="Slide4"/>
+		<label for="Slide4" id="s4"></label>
+		<div class="overflow-wrapper">
+			<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+			<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+			<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+			<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
+		</div>
+	</div>
+</div>
+<canvas width="500" height="500" id="cnvs"></canvas>
+<div class="content">
+	<div class="desc">
+		Un joc / experiència on el jugador pugui arribar a materialitzar aquells elements del joc que li resultin interessants. L’experiència del jugador seria: primer tindria una fase on buscaria i localitzaria elements (objectes o criatures) en 3D, per afegir-los a la seva col·lecció, aquesta col·lecció la podrà anar revisant a través del mòbil o la web i comparar-la amb altres usuaris, mentre interactua amb ells com a una xarxa social. A part ens agradaria que com extra l’usuari pugui arribar a crear aquests elements gràcies a una impressora 3D, aconseguint així figuretes reals dels elements en 3D.
+		<!-- <div id="nav-top-hor-left">
+		<a id="link" href="/">Inici</a>
+		<a id="link" href="/image">image_log</a>
+		<a id="link" href="/d_image">image</a>
+		</div> -->
+		<div class="columns">
+			<div id="content" class="column">
+				{% block content-header %}
+				{% if error %}
+				<div class="error">
+					{{ error }}
+				</div>
+				{% endif %}
+				{% if info %}
+				<div class="info">
+					{{ info }}
+				</div>{% endif %}
+				{% if messages %}
+				{% for message in messages %}
+				<div class="info">
+					{{ message }}
+				</div>
+				{% endfor %}
+				{% endif %}
+				{% endblock %}
+
+			</div>
+
+			<div id="sidebar" class="column">
+				{% block sidebar %}
+
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

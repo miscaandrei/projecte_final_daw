@@ -6,7 +6,11 @@ dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
 xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
 lang="{% firstof LANGUAGE_CODE 'en' %}">
 	<head>
+<<<<<<< HEAD
 		<title>{% block title %}{% endblock %} Ikarus App</title>
+=======
+		<title>Ikarus App</title>
+>>>>>>> 713dd28093212161f793b956e1e336bc013b1d21
 
 		{% block css %}
 		{% endblock %}
@@ -59,11 +63,14 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 						Contacte
 					</li>
 					<li>
-						<a href="/manual_tecnic"> Ajuda s</a>
+						<a href="/manual_tecnic"> Ajuda</a>
 					</li>
 					{% if user.is_authenticated %}
 					<li>
-						<a id="link" href="/profile">Profile</a>
+						<a id="link" href="/profile">Perfil</a>
+					</li>
+					<li>
+						<a id="link" href="/map">Mapa</a>
 					</li>
 					<li>
 						<a id="link" href="/inventory">Inventari</a>
@@ -74,7 +81,7 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				</ul>
 				{% else %}
 				<li>
-					<a href="/accounts/login/">Sign-in</a>
+					<a href="/accounts/login/">Log-in</a>
 				</li>
 				</ul>
 				{% endif %}
@@ -85,74 +92,18 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 		</div>
 		<div class="top">
 			<div class="breadcrumb">
-				Welcome to the Ikarus App Project
+				{% block title %}{% endblock %}
 				{% if user.is_authenticated %}	
 				<div class="welcome">Benvingut {{ user.username }} !</div>
 				{% endif %}
 			</div>
 		</div>
 		<div class="wrapper">
-			<div id="slider-wrapper">
-				<div class="inner-wrapper">
-					<input checked type="radio" name="slide" class="control" id="Slide1"/>
-					<label for="Slide1" id="s1"></label>
-					<input type="radio" name="slide" class="control" id="Slide2"/>
-					<label for="Slide2" id="s2"></label>
-					<input type="radio" name="slide" class="control" id="Slide3"/>
-					<label for="Slide3" id="s3"></label>
-					<input type="radio" name="slide" class="control" id="Slide4"/>
-					<label for="Slide4" id="s4"></label>
-					<div class="overflow-wrapper">
-						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-						<a class="slide" href=""><img src="http://i.imgur.com/hKju1EC.jpg"/></a>
-					</div>
-				</div>
-			</div>
-			<div class="content">
-				<div class="desc">
-					{% block content %}{% endblock %}
-					<!-- <div id="nav-top-hor-left">
-					<a id="link" href="/">Inici</a>
-					<a id="link" href="/image">image_log</a>
-					<a id="link" href="/d_image">image</a>
-					</div> -->
-					<div class="columns">
-						<div id="content" class="column">
-							{% block content-header %}
-							{% if error %}
-							<div class="error">
-								{{ error }}
-							</div>
-							{% endif %}
-							{% if info %}
-							<div class="info">
-								{{ info }}
-							</div>{% endif %}
-							{% if messages %}
-							{% for message in messages %}
-							<div class="info">
-								{{ message }}
-							</div>
-							{% endfor %}
-							{% endif %}
-							{% endblock %}
-
-							
-						</div>
-
-						<div id="sidebar" class="column">
-							{% block sidebar %}
-
-							{% endblock %}
-						</div>
-					</div>
-				</div>
+			<div class="content-loader">
+			{% block content %}{% endblock %}
 			</div>
 			<div class="footer">
 				<div class="footer-content">
-					<canvas width="500" height="500" id="cnvs"></canvas>
 					<div class="text-footer">
 						Ikarus App | 2014 Manresa, Barcelona 08240
 					</div>
