@@ -76,7 +76,7 @@ def user_friends(request):
 @login_required
 def user_map(request):
 	pass
-	return render( request, "base.html")
+	return render( request, "map.html")
 
 
 def contact(request):
