@@ -75,8 +75,11 @@ def user_friends(request):
 
 @login_required
 def user_map(request):
-	pass
-	return render( request, "map.html")
+	all_items = Objecte.objects.all()
+	lista_punts=[]
+	for punt in all_items:
+		lista_punts.append({'latitude':float(punt.latitude), 'longitude':float(punt.longitude)})
+	return render( request, "map.html", {"lista":lista_punts})
 
 
 def contact(request):
