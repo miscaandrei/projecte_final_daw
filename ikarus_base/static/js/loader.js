@@ -149,7 +149,7 @@ function modelLoadedCallback(geometry, materials) {
  * color for the renderer (since black background doesn't work for all
  * of the models.
  */
-function installModel(file) {
+function installModel(file, bgColor) {
 	if (model) {
 		scene.remove(model);
 	}
@@ -157,7 +157,7 @@ function installModel(file) {
 	renderer.AA = 1;
 	render();
 	var loader = new THREE.JSONLoader();
-	loader.load(baseUrl + file, modelLoadedCallback);
+	loader.load('/home/ikarus_app/web/projecte_final_daw/ikarus_base/static/' + file, modelLoadedCallback);
 }
 
 /**
@@ -217,6 +217,7 @@ function doKey(evt) {
  *  initial view of the scene.  If an error occurs, it is reported.
  */
 function init() {
+
 	try {
 		var theCanvas = document.getElementById("cnvs");
 		if (!theCanvas || !theCanvas.getContext) {
@@ -256,4 +257,5 @@ function init() {
 	} catch (e) {
 		document.getElementById("message").innerHTML = "Sorry, an error occurred: " + e;
 	}
+	
 }

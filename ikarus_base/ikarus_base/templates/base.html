@@ -12,9 +12,9 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 		{% endblock %}
 		<script type="text/javascript">
 			var require = {
-				baseUrl : '{{ STATIC_URL }}'
+				baseUrl : '/home/ikarus_app/web/projecte_final_daw/ikarus_base/static/'
 			};
-		</script>
+		</script> 
 		<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
 		<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
@@ -30,6 +30,9 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				Sorry, but this page requires JavaScript!
 			</p>
 		</noscript>
+		<script>
+			setInterval(model.rotation.set(0, 0, 0),500);
+		</script>
 		<div class="menu-content">
 			<div class="menu">
 				<div class="logo">
@@ -53,7 +56,8 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 					</li>
 					{% if user.is_authenticated %}
 					<li>
-						<a id="link" href="/profile">Profile</a>
+						<a id="link" href="/profile">Profile<input type="radio" name="model" id="r1" onchange="installModel('legoform.json',0)">
+				</a>
 					</li>
 					<li>
 						<a id="link" href="/inventory">Inventari</a>
@@ -161,7 +165,7 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 							<img class="logo-footer" src="{{STATIC_URL}}images/lacetania.png"/>
 						</a>
 					</div>
-				</div>
+					</div>
 			</div>
 		</div>
 	</body>
