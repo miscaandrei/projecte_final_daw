@@ -31,7 +31,14 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 			</p>
 		</noscript>
 		<script>
-			setInterval(model.rotation.set(0, 0, 0),500);
+		setInterval(function(){
+			if (model) {
+				console.log("asd");
+			rotateY -= 0.05;
+			model.rotation.set(0,rotateY,0);
+			render();
+		}
+		},50);
 		</script>
 		<div class="menu-content">
 			<div class="menu">
@@ -52,12 +59,11 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 						Contacte
 					</li>
 					<li>
-						Ajuda
+						<a href="/manual"> Ajuda s</a>
 					</li>
 					{% if user.is_authenticated %}
 					<li>
-						<a id="link" href="/profile">Profile<input type="radio" name="model" id="r1" onchange="installModel('legoform.json',0)">
-				</a>
+						<a id="link" href="/profile">Profile</a>
 					</li>
 					<li>
 						<a id="link" href="/inventory">Inventari</a>
@@ -165,7 +171,7 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 							<img class="logo-footer" src="{{STATIC_URL}}images/lacetania.png"/>
 						</a>
 					</div>
-					</div>
+				</div>
 			</div>
 		</div>
 	</body>
