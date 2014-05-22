@@ -34,10 +34,16 @@ var berlin = new google.maps.LatLng(41.731335, 1.831175);
 
 var neighborhoods = [];
 
+
+
+{% for item in lista %}
+	neighborhoods.push(new google.maps.LatLng({{item.latitude}}, {{item.longitude}}));
+{% endfor %}
+/*
 for (var i=0; i<longitud_lista; i++){
 	neighborhoods.push(new google.maps.LatLng({{lista.i.latitude}}, {{lista.i.longitude}}));
 }
-
+*/
 console.log("{{lista.1}}");
 console.log("{{longitud_lista}}");
 console.log(neighborhoods);
