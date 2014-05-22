@@ -1,28 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Profile{% endblock %}
+{% block title %}Perfil{% endblock %}
 {% block content %}
 
 {% if form.errors %}
 {% endif %}
-<h3>Profile Page</h3>
-<ul>
-{{ "Mary had a little"|stringformat:"s lamb." }}
-	<li>Referencia de client : {{ ref_client }}</li>
-	<li>Nom : {{ Nom }}</li>
-	<li>Cognom : {{ Cognoms }}</li>
-	<li>Rating : {{ rating }}</li>
-	<li>Location : {{ location }}</li>
-	<li>Avatar : <img src={{client.avatar.url}} width="100px" height="100px"></li>
-
-
-</ul>
-
-
-
-
-
-
-
-
-
+<div style="width:20%;float:left;margin:2% 2% 0 0;">
+	<img src={{client.avatar.url}} width="100%">
+</div>
+<div style="width:78%;margin:2% 0 0 0;overflow:auto; min-height: calc( 100vh - 210px );float:left;background-color:rgba(255,255,255,0.2);">
+	<ul style="margin:10px;list-style: none;line-height: 25px;">
+		<li>Referencia de client : {{ ref_client }}</li>
+		<li>Nom : {{ Nom }}</li>
+		<li>Cognom : {{ Cognoms }}</li>
+		<li>Rating : {{ rating }}</li>
+		<li>Location : {{ location }}</li>
+	</ul>
+</div>
 {% endblock %}

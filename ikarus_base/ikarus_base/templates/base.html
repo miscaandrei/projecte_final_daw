@@ -33,7 +33,6 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 		<script>
 		setInterval(function(){
 			if (model) {
-				console.log("asd");
 			rotateY -= 0.05;
 			model.rotation.set(0,rotateY,0);
 			render();
@@ -49,14 +48,14 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 					<li>
 						<a href="/">Portada</a>
 					</li>
-					<li>
+					<li style="text-decoration:line-through;">
 						Coleccions
 					</li>
-					<li>
+					<li style="text-decoration:line-through;">
 						Ranking
 					</li>
 					<li>
-						Contacte
+						<a href="/contact"> Contacte</a>
 					</li>
 					<li>
 						<a href="/manual_tecnic"> Ajuda</a>
