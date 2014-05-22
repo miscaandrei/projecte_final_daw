@@ -79,7 +79,7 @@ def user_map(request):
 	lista_punts=[]
 	for punt in all_items:
 		lista_punts.append({'latitude':float(punt.latitude), 'longitude':float(punt.longitude)})
-	return render( request, "map.html", {"lista":lista_punts})
+	return render( request, "map.html", {"lista":lista_punts, "longitud_lista":len(lista_punts)})
 
 
 def contact(request):
