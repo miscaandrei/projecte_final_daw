@@ -92,6 +92,14 @@ def manual_tecnic(request):
 	return render( request, "ayuda.html")
 
 
+
+def handler404(request):
+    return render(request, '404.html')
+
+
+
+
+
 def list_objects(request):
 	pass
 	return render( request, "base.html")
