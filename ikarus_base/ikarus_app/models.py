@@ -50,9 +50,9 @@ class Quest(models.Model):
 
 
 class ContactForm(forms.Form):
-    subjecte = forms.CharField(max_length=100)
-    missatge = forms.CharField()
-    emisor = forms.EmailField()
+	subjecte = forms.CharField(max_length=100)
+	missatge = forms.TextField()
+	emisor = forms.EmailField()
 
 
 
