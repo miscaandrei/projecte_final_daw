@@ -19,8 +19,12 @@ div.wrapper {
 }
 canvas#cnvs {
 	position: absolute;
-	bottom: -40px;
+	bottom: 0px;
 	left: -80px;z-index;9999;
+	width: 420px;
+	height: 420px;
+	margin: 300px 0 0 0;
+	z-index: 9999;
 }
 div.menu-content {
 	position: fixed;
@@ -122,17 +126,6 @@ div.footer {
 	background: url('../images/background_b.jpg');
 	background-size: cover;
 	background-position: 0px -50px;
-}
-@media screen and (min-width: 0px) and (max-width: 1400px) {
-	canvas#cnvs {
-		position: absolute;
-		bottom: 0px;
-		left: -80px;z-index;9999;
-		width: 420px;
-		height: 420px;
-		margin: 300px 0 0 0;
-		z-index: 9999;
-	}
 }
 .logo {
 	float: left;
@@ -372,8 +365,15 @@ div.content-loader {
 	border: 1px solid #999;
 }
 #map-canvas {
-	height: 400px;
+	height: calc( 100vh - 200px);
 	width: 100%;
-	margin: 0px;
-	padding: 0px
+	margin: 10px 0 0 0;
+	padding: 0px;
+}
+.canvas-inventory{
+	position:relative !important;
+	width:auto !important;
+	height:auto !important;
+	left:auto !important;
+	margin:0 !important;
 }
