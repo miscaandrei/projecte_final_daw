@@ -16,7 +16,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
-
+from django.core.mail import send_mail
+from django.core.mail import *
 
 import math
 import json
@@ -105,7 +106,7 @@ def manual_tecnic(request):
 
 
 def handler404(request):
-    return render(request, '404.html')
+	return render(request, '404.html')
 
 
 
@@ -256,16 +257,16 @@ def register_redirect(request):
 
 @csrf_exempt
 def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return HttpResponseRedirect("/thanks_register")
-    else:
-        form = UserCreationForm()
-    return render(request, "registration/register.html", {
-        'form': form,
-    })
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			new_user = form.save()
+			return HttpResponseRedirect("/thanks_register")
+	else:
+		form = UserCreationForm()
+	return render(request, "registration/register.html", {
+		'form': form,
+	})
 
 
 
@@ -333,3 +334,34 @@ def username_exists(nom_usuari):
 	if Client.objects.filter(username=user).count(): 
 		return True
 	return False
+
+
+
+def contact(request):
+	if request.method == 'POST': # If the form has been submitted...
+		# ContactForm was defined in the previous section
+		form = ContactForm(request.POST) # A form bound to the POST data
+		if form.is_valid(): # All validation rules pass
+			if form.is_valid():
+				subject = form.cleaned_data['subjecte']
+				message = form.cleaned_data['missatge']
+				sender = form.cleaned_data['emisor']
+
+				recipients = 'ikarusprojectapp@gmail.com'
+
+				email = EmailMessage(subject, message, to=[recipients, sender])
+				email.send()
+
+				return HttpResponseRedirect('/thanks/') # Redirect after POST
+
+	else:
+		form = ContactForm() # An unbound form
+
+	return render(request, 'contact.html', {
+		'form': form,
+	})
+
+
+
+def thanks(request):
+	return render(request, 'thanks.html')

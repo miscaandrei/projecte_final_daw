@@ -4,6 +4,7 @@ from django.db.models.signals import post_save # despres de crear el usuari de s
 from django.contrib.gis.db import models
 from django.contrib import admin
 from models_admin import *
+from django import forms
 
 # Create your models here.
 
@@ -48,6 +49,10 @@ class Quest(models.Model):
 	min_rating=models.IntegerField()
 
 
+class ContactForm(forms.Form):
+    subjecte = forms.CharField(max_length=100)
+    missatge = forms.CharField()
+    emisor = forms.EmailField()
 
 
 

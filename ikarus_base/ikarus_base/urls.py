@@ -39,7 +39,10 @@ urlpatterns = patterns('',
     url(r'^manual_tecnic/', 'ikarus_app.views.manual_tecnic', name='Image Test'),
     url(r'^map/', 'ikarus_app.views.user_map', name='Image Test'),
     url(r'^thanks_register/', 'ikarus_app.views.register_redirect', name='Image Test'),
+    url(r'^thanks/', 'ikarus_app.views.thanks', name='Image Test'),
     url(r'^register/', 'ikarus_app.views.register', name='Image Test'),
+    url(r'^contact/', 'ikarus_app.views.contact', name='Image Test'),
+
 
 )  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #very important my friend
 urlpatterns += staticfiles_urlpatterns()
