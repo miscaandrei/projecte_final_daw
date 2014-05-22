@@ -6,7 +6,11 @@ dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
 xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
 lang="{% firstof LANGUAGE_CODE 'en' %}">
 	<head>
+<<<<<<< HEAD
+		<title>{% block title %}{% endblock %} Ikarus App</title>
+=======
 		<title>Ikarus App</title>
+>>>>>>> 713dd28093212161f793b956e1e336bc013b1d21
 
 		{% block css %}
 		{% endblock %}

@@ -38,9 +38,11 @@ urlpatterns = patterns('',
     url(r'^d/', 'ikarus_app.views.json_render', name='Image Test'),
     url(r'^manual_tecnic/', 'ikarus_app.views.manual_tecnic', name='Image Test'),
     url(r'^map/', 'ikarus_app.views.user_map', name='Image Test'),
+    url(r'^thanks_register/', 'ikarus_app.views.register_redirect', name='Image Test'),
+    url(r'^register/', 'ikarus_app.views.register', name='Image Test'),
 
 )  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #very important my friend
 urlpatterns += staticfiles_urlpatterns()
 
 
-handler404 = 'mysite.views.handler404'
+handler404 = 'ikarus_app.views.handler404'

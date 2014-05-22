@@ -2,17 +2,25 @@ from ikarus_app.models import *
 from django.http import *
 import datetime
 from models import *
+from django import forms
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import *
 from django.contrib import auth
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.contrib.auth.models import User
+
+
 import math
+import json
+
 
 # Create your views here.
 def home(request):
@@ -35,11 +43,14 @@ def image(request):
 
 @login_required
 def user_profile(request):
-	
+
 	us = request.user.username #primer buscar el usuari de la sessio
 	user=User.objects.get(username=us) # desar el objecte coresponent a USER
-	client=Client.objects.get(username=user) # buscar el client que te relacio directa amb el USER desat
-
+	if username_exists(us)==True:
+		client=Client.objects.get(username=user) # buscar el client que te relacio directa amb el USER desat
+	else:
+		logout(request)
+		return render( request, "user_error.html") #aixo ja funciona
 	#html = "<html><p> %s. </p></html>" %client.ref_client
 	#return HttpResponse(html)
 	return render( request, "profile.html", {"ref_client": client.ref_client, "Nom":client.nom ,"Cognoms":client.cognoms, "rating":client.rating, "location":client.location, "client":client}) #aixo ja funciona
@@ -237,8 +248,24 @@ def torna_geo_items(longitude_user,latitude_user):
 	print resultat
 	return resultat
 
+def register_redirect(request):
+	pass
+	return render(request, "registration/registration_successful.html")
 
 
+
+@csrf_exempt
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/thanks_register")
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
 
 
 
@@ -290,3 +317,19 @@ def json_render(request):
 	objecte_d = item.arxiu
 
 	return render( request, "3drender.html", {"json": objecte_d}) 
+
+
+
+
+def handler404(request):
+	return render( request, "404.html" )
+
+
+
+
+def username_exists(nom_usuari):
+	user=User.objects.get(username=nom_usuari) # desar el objecte coresponent a USER
+
+	if Client.objects.filter(username=user).count(): 
+		return True
+	return False
