@@ -30,12 +30,13 @@ urlpatterns = patterns('',
     #url(r'^accounts/login/$', login),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login/'}),
     url(r'^profile/', 'ikarus_app.views.user_profile', name='Profile'),
-    url(r'^inventory_test/', 'ikarus_app.views.torna_objecte_user', name='Profile'),
-    url(r'^inventory/', 'ikarus_app.views.user_inventory', name='Inventory'),
+    url(r'^inventory/', 'ikarus_app.views.torna_objecte_user', name='Profile'),
     url(r'^json/', 'ikarus_app.views.json_auth_web_service_out', name='JSON'),
     url(r'^json_in/', 'ikarus_app.views.json_auth_web_service_in'),
     url(r'^json_map/', 'ikarus_app.views.json_movile_geo_objects'),
     url(r'^image_test/', 'ikarus_app.views.d_image_test', name='Image Test'),
     url(r'^d/', 'ikarus_app.views.json_render', name='Image Test'),
+    url(r'^manual_tecnic/', 'ikarus_app.views.manual_tecnic', name='Image Test'),
+
 )  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #very important my friend
 urlpatterns += staticfiles_urlpatterns()

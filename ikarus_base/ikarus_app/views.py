@@ -84,6 +84,10 @@ def contact(request):
 	return render( request, "base.html")
 
 
+def manual_tecnic(request):
+	print "manual tecnic"
+	return render( request, "ayuda.html")
+
 
 def list_objects(request):
 	pass

@@ -129,27 +129,25 @@ function modelLoadedCallback(geometry, materials) {
 	object.position.set(-centerX, -centerY, -centerZ);
 	console.log("Loading finished, scaling object by " + scale);
 	console.log("Center at ( " + centerX + ", " + centerY + ", " + centerZ + " )");
-
 	/* Create the wrapper, model, to scale and rotate the object. */
 
 	model = new THREE.Object3D();
 	model.add(object);
 	model.scale.set(scale, scale, scale);
+	
 	rotateX = rotateY = 0;
 	model.overdraw = true;
 	scene.add(model);
-	model.rotation.set(0.2, 0.5, 0);
-	render();
+	render();	
 
 }
-
 /**
  * Called when the setting of the model-selection radio buttons is changed.
  * starts loading the model from the specified file and sets the background
  * color for the renderer (since black background doesn't work for all
  * of the models.
  */
-function installModel(file) {
+function installModel(file, bgColor) {
 	if (model) {
 		scene.remove(model);
 	}
@@ -209,7 +207,6 @@ function doKey(evt) {
 		evt.preventDefault();
 	}
 }
-
 /**
  *  This function is called by the onload event so it will run after the
  *  page has loaded.  It creates the renderer, canvas, and scene objects,
@@ -217,6 +214,7 @@ function doKey(evt) {
  *  initial view of the scene.  If an error occurs, it is reported.
  */
 function init() {
+
 	try {
 		var theCanvas = document.getElementById("cnvs");
 		if (!theCanvas || !theCanvas.getContext) {
@@ -256,4 +254,5 @@ function init() {
 	} catch (e) {
 		document.getElementById("message").innerHTML = "Sorry, an error occurred: " + e;
 	}
+	
 }

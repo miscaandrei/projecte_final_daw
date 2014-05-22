@@ -12,9 +12,9 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 		{% endblock %}
 		<script type="text/javascript">
 			var require = {
-				baseUrl : '{{ STATIC_URL }}'
+				baseUrl : '/home/ikarus_app/web/projecte_final_daw/ikarus_base/static/'
 			};
-		</script>
+		</script> 
 		<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
 		<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
@@ -30,6 +30,16 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				Sorry, but this page requires JavaScript!
 			</p>
 		</noscript>
+		<script>
+		setInterval(function(){
+			if (model) {
+				console.log("asd");
+			rotateY -= 0.05;
+			model.rotation.set(0,rotateY,0);
+			render();
+		}
+		},50);
+		</script>
 		<div class="menu-content">
 			<div class="menu">
 				<div class="logo">
@@ -49,7 +59,7 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 						Contacte
 					</li>
 					<li>
-						Ajuda
+						<a href="/manual"> Ajuda s</a>
 					</li>
 					{% if user.is_authenticated %}
 					<li>
