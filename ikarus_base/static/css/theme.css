@@ -423,7 +423,7 @@ div.content-loader {
 	color: black;
 	box-shadow: 1px 2px 1px rgb(109, 87, 0);
 	font-weight: bold;
-	border:none;
+	border: none;
 }
 .content-manual a:hover, .form-register  input[type='submit']:hover {
 	box-shadow: none;
@@ -447,7 +447,7 @@ div.content-loader {
 	width: 350px;
 	float: right;
 }
-.contact input[type='submit']{
+.contact input[type='submit'] {
 	width: auto;
 	float: left;
 	margin: 0px 10px 10px 360px;
@@ -462,18 +462,63 @@ div.content-loader {
 	font-weight: bold;
 	border: none;
 }
-.contact input[type='submit']:hover{
+.contact input[type='submit']:hover {
 	box-shadow: none;
 	margin: 2px 10px 8px 360px;
 	cursor: pointer;
 }
-.errorlist{
-	list-style:none;
+.errorlist {
+	list-style: none;
 	background-color: rgba(155, 0, 0, 0.38);
 	padding: 5px;
 }
 .form-register {
-	margin: 10% auto 10px auto;
-	padding:10px;
+	margin: calc(30vh - 93px) auto 10px auto;
+	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.04);
+}
+.form-register input[type='submit'] {
+	float: right;
+	width: 200px;
+	padding: 15px;
+	text-transform: uppercase;
+}
+.form-register a {
+	float: right;
+	margin: 0px 10px 10px 10px;
+	padding: 3px 25px;
+	background-color: rgb(55, 163, 51);
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+	border-radius: 4px;
+	color: black;
+	box-shadow: 1px 2px 1px rgba(55, 163, 51, 0.5);
+	font-weight: bold;
+	border: none;
+}
+.form-register a:hover {
+	box-shadow: none;
+	margin: 2px 10px 8px 10px;
+	cursor: pointer;
+}
+.regist .helptext {
+	display:none;
+	}
+.regist input {
+	width:200px;
+}
+.regist input[type='submit'] {
+	float:right;
+	margin: 0 30px 10px 0 !important;
+}
+.regist input {
+.register-ok {
+	text-align: center;
+	color: green;
+}
+.register-ok-desc {
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
 }

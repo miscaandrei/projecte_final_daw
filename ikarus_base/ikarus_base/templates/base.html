@@ -5,8 +5,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
 xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
 lang="{% firstof LANGUAGE_CODE 'en' %}">
+<link rel="shortcut icon" href="{{STATIC_URL}}images/ikarus-favicon.ico">
 	<head>
-		<title> Ikarus App</title>
+		<title>Ikarus</title>
 		{% block css %}
 		{% endblock %}
 		<script type="text/javascript">
