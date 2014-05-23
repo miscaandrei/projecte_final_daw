@@ -2,11 +2,9 @@
 
 {% block content %}
 
-
-<center>
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+<table class="form-register">
 {% csrf_token %}
-<table>
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
@@ -15,12 +13,13 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
+<tr>
+	<td><input type="submit" value="login" /></td>
+</tr> 
 </table>
-
-<input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-</center>
+
 {% if form.errors %}
 <p style="color:red" align="center">Your username and password didn't match.</br> Please try again.</p>
 {% endif %}
