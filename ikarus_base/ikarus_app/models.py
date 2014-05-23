@@ -50,9 +50,15 @@ class Quest(models.Model):
 
 
 class ContactForm(forms.Form):
+<<<<<<< HEAD
 	subjecte = forms.CharField(max_length=100)
 	missatge = forms.TextField()
 	emisor = forms.EmailField()
+=======
+    subjecte = forms.CharField(max_length=100)
+    missatge = forms.CharField(widget = forms.Textarea)
+    emisor = forms.EmailField()
+>>>>>>> 53815f16ef6a744938289751547fd7a8c4468df1
 
 
 
@@ -60,3 +66,4 @@ class ContactForm(forms.Form):
 admin.site.register(Client, Client_admin)
 admin.site.register(Objecte, Objecte_admin)
 admin.site.register(Quest, Quests_admin)
+
