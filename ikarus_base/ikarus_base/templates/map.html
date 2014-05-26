@@ -4,78 +4,76 @@
 
 {% if form.errors %}
 {% endif %}
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script>
-// If you're adding a number of markers, you may want to
-// drop them on the map consecutively rather than all at once.
-// This example shows how to use setTimeout() to space
-// your markers' animation.
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+	// If you're adding a number of markers, you may want to
+	// drop them on the map consecutively rather than all at once.
+	// This example shows how to use setTimeout() to space
+	// your markers' animation.
 
-var berlin = new google.maps.LatLng(41.731335, 1.831175);
+	var berlin = new google.maps.LatLng(41.731335, 1.831175);
 
-var neighborhoods = [];
+	var neighborhoods = [];
+
+	{% for item in lista %}
+	neighborhoods.push(new google.maps.LatLng({{item.latitude}},{{item.longitude}}));
+	{% endfor %}
+	/*
+	 for (var i=0; i<longitud_lista; i++){
+	 neighborhoods.push(new google.maps.LatLng({{lista.i.latitude}}, {{lista.i.longitude}}));
+	 }
+	 */
+	console.log("{{lista.1}}");
+	console.log("{{longitud_lista}}");
+	/*console.log(neighborhoods);*/
+
+	/*
+	 var neighborhoods = [
+	 new google.maps.LatLng(41.735326, 1.825336),
+	 new google.maps.LatLng(41.735871, 1.831537),
+	 new google.maps.LatLng(41.739809, 1.826473),
+	 new google.maps.LatLng(41.739067, 1.833177)
+	 ];
+	 */
+	var markers = [];
+	var iterator = 0;
+
+	var map;
+
+	function initialize() {
+		var mapOptions = {
+			zoom : 14,
+			center : berlin
+		};
+
+		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		setTimeout('drop()', 2000);
+
+	}
+
+	function drop() {
+		for (var i = 0; i < neighborhoods.length; i++) {
+			setTimeout(function() {
+				addMarker();
+			}, i * 200);
+		}
+	}
+
+	function addMarker() {
+		markers.push(new google.maps.Marker({
+			position : neighborhoods[iterator],
+			map : map,
+			draggable : false,
+			title : "-Nom item -",
+			animation : google.maps.Animation.DROP
+		}));
+		iterator++;
+	}
 
 
+	google.maps.event.addDomListener(window, 'load', initialize);
 
-{% for item in lista %}
-	neighborhoods.push(new google.maps.LatLng({{item.latitude}}, {{item.longitude}}));
-{% endfor %}
-/*
-for (var i=0; i<longitud_lista; i++){
-	neighborhoods.push(new google.maps.LatLng({{lista.i.latitude}}, {{lista.i.longitude}}));
-}
-*/
-console.log("{{lista.1}}");
-console.log("{{longitud_lista}}");
-/*console.log(neighborhoods);*/
-
-
-/*
-var neighborhoods = [
-  new google.maps.LatLng(41.735326, 1.825336),
-  new google.maps.LatLng(41.735871, 1.831537),
-  new google.maps.LatLng(41.739809, 1.826473),
-  new google.maps.LatLng(41.739067, 1.833177)
-];
-*/
-var markers = [];
-var iterator = 0;
-
-var map;
-
-function initialize() {
-  var mapOptions = {
-    zoom: 14,
-    center: berlin
-  };
-
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
-  setTimeout('drop()',2000);
-
-}
-
-function drop() {
-  for (var i = 0; i < neighborhoods.length; i++) {
-    setTimeout(function() {
-      addMarker();
-    }, i * 200);
-  }
-}
-
-function addMarker() {
-  markers.push(new google.maps.Marker({
-    position: neighborhoods[iterator],
-    map: map,
-    draggable: false,
-    animation: google.maps.Animation.DROP
-  }));
-  iterator++;
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-    <div id="map-canvas"></div>
+</script>
+<div id="map-canvas"></div>
 
 {% endblock %}

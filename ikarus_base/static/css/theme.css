@@ -503,17 +503,16 @@ div.content-loader {
 	cursor: pointer;
 }
 .regist .helptext {
-	display:none;
-	}
+	display: none;
+}
 .regist input {
-	width:200px;
+	width: 200px;
 }
 .regist input[type='submit'] {
-	float:right;
+	float: right;
 	margin: 0 30px 10px 0 !important;
 }
-.regist input {
-.register-ok {
+.regist input {.register-ok {
 	text-align: center;
 	color: green;
 }
@@ -521,4 +520,32 @@ div.content-loader {
 	text-align: center;
 	width: 400px;
 	margin: 0 auto;
+}
+.content-items {
+	width: 58%;
+	margin: 2% 0 0 0;
+	overflow: auto;
+	height: calc( 100vh - 205px );
+	min-height: 200px;
+	float: left;
+}
+.content-object {
+	width: 40%;
+	height: calc(100vh - 210px);
+	min-height: 384px;
+	float: left;
+	margin: 2% 2% 0 0;
+	background-color: rgba(255, 184, 0, 0.17);
+}
+.item-cont {
+	margin: 0 15px 15px 0;
+	width: 47%;
+	float: left;
+	list-style: none;
+	line-height: 25px;
+	cursor: pointer;
+	background-color: rgba(255,255,255,0.2);
+}
+.desc-item-inv {
+	list-style: none;
 }

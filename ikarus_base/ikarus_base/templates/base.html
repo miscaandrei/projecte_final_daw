@@ -1,12 +1,10 @@
 <!DOCTYPE html
 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
-xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
-lang="{% firstof LANGUAGE_CODE 'en' %}">
-<link rel="shortcut icon" href="{{STATIC_URL}}images/ikarus-favicon.ico">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{% firstof LANGUAGE_CODE 'en' %}" lang="{% firstof LANGUAGE_CODE 'en' %}">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="shortcut icon" href="{{STATIC_URL}}images/ikarus-favicon.ico" />
 		<title>Ikarus</title>
 		{% block css %}
 		{% endblock %}
@@ -14,7 +12,7 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 			var require = {
 				baseUrl : '/home/ikarus_app/web/projecte_final_daw/ikarus_base/static/'
 			};
-		</script> 
+		</script>
 		<script type="text/javascript" src="{{STATIC_URL}}js/three.min.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}js/loader.js"></script>
 		<link rel="stylesheet" href="{{STATIC_URL}}css/theme.css"/>
@@ -30,19 +28,19 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				Sorry, but this page requires JavaScript!
 			</p>
 		</noscript>
-		<script>
-		setInterval(function(){
-			if (model) {
-			rotateY -= 0.05;
-			model.rotation.set(0,rotateY,0);
-			render();
-		}
-		},50);
+		<script type="text/javascript">
+			setInterval(function() {
+				if (model) {
+					rotateY -= 0.05;
+					model.rotation.set(0, rotateY, 0);
+					render();
+				}
+			}, 50);
 		</script>
 		<div class="menu-content">
 			<div class="menu">
 				<div class="logo">
-					<img src="{{STATIC_URL}}images/logo.png" />
+					<img src="{{STATIC_URL}}images/logo.png" alt="Logo Ikarus Project"/>
 				</div>
 				<ul>
 					<li>
@@ -81,21 +79,23 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 				</ul>
 				{% endif %}
 				<div class="letras">
-					<img src="{{STATIC_URL}}images/letras.png" />
+					<img src="{{STATIC_URL}}images/letras.png" alt="Ikarus" />
 				</div>
 			</div>
 		</div>
 		<div class="top">
 			<div class="breadcrumb">
 				{% block title %}{% endblock %}
-				{% if user.is_authenticated %}	
-				<div class="welcome">Benvingut {{ user.username }} !</div>
+				{% if user.is_authenticated %}
+				<div class="welcome">
+					Benvingut {{ user.username }} !
+				</div>
 				{% endif %}
 			</div>
 		</div>
 		<div class="wrapper">
 			<div class="content-loader">
-			{% block content %}{% endblock %}
+				{% block content %}{% endblock %}
 			</div>
 			<div class="footer">
 				<div class="footer-content">
@@ -103,19 +103,13 @@ lang="{% firstof LANGUAGE_CODE 'en' %}">
 						Ikarus App | 2014 Manresa, Barcelona 08240
 					</div>
 					<div class="img-footer">
-						<a href="https://github.com/miscaandrei/projecte_final_daw" target="_blank" title="Arxius del Projecte" alt="Arxius del Projecte">
-							<img class="logo-footer" src="{{STATIC_URL}}images/git.png"/>
-						</a>
+						<a href="https://github.com/SchoolFreaks" target="_blank" title="Arxius del Projecte"> <img class="logo-footer" src="{{STATIC_URL}}images/git.png" alt="Arxius del Projecte" /> </a>
 					</div>
 					<div class="img-footer">
-						<a href="https://github.com/miscaandrei/projecte_final_daw/wiki" target="_blank" title="Documentació" alt="Documentació">
-							<img class="logo-footer" src="{{STATIC_URL}}images/wiki.png" />
-						</a>
+						<a href="https://drive.google.com/folderview?id=0BzHq5FQxIwOCXzJBcEJrMUJDOHM&usp=sharing" target="_blank" title="Documentació"> <img class="logo-footer" src="{{STATIC_URL}}images/wiki.png" alt="Documentació" /> </a>
 					</div>
 					<div class="img-footer">
-						<a href="http://www.infla.cat/web/" target="_blank" title="infla.cat" alt="infla.cat">
-							<img class="logo-footer" src="{{STATIC_URL}}images/lacetania.png"/>
-						</a>
+						<a href="http://www.infla.cat/web/" target="_blank" title="infla.cat"> <img class="logo-footer" src="{{STATIC_URL}}images/lacetania.png" alt="infla.cat"/> </a>
 					</div>
 				</div>
 			</div>

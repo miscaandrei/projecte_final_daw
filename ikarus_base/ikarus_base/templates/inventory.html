@@ -9,7 +9,7 @@
 <div style="width:40%;height:calc(100vh - 210px); min-height:384px; float:left;margin:2% 2% 0 0;background-color:rgba(255, 184, 0, 0.17);">
 	<canvas width="384" height="384" id="cnvs" class="canvas-inventory"></canvas>
 </div>
-<div style="width:58%;margin:2% 0 0 0;overflow:auto; height: calc( 100vh - 210px ); min-height:200px; float:left;">
+<div class="content-items">
 	{% for a in dicionari.items %}
 	<div style="margin:0 15px 15px 0;width:47%; float:left; list-style: none;line-height: 25px; cursor:pointer;background-color:rgba(255,255,255,0.2);" name="model" id="r1" onclick="installModel('{{a.1.2}}',0)">
 		<ul style="list-style: none;">
