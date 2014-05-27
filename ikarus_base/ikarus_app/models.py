@@ -19,7 +19,7 @@ class Client(models.Model):
 	rating=models.SmallIntegerField()
 	friends=models.CharField(max_length=250) #dins d'aquesta variable desarem una llista json que contindra una llista de tots els items que tenim
 	location=models.CharField(max_length=250) #desa dins l'ubicacio en forma deJSOn amb Lon Lat
-	avatar=models.ImageField(upload_to = 'pic_folder/')
+	avatar=models.ImageField(upload_to = 'static/avatar/')
 	description=models.CharField(max_length=250)
 	completed_quests=models.CharField(max_length=250) # llista JSON
 	inventory=models.CharField(max_length=250) # llista JSON

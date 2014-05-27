@@ -155,7 +155,7 @@ function installModel(file, bgColor) {
 	renderer.AA = 1;
 	render();
 	var loader = new THREE.JSONLoader();
-	loader.load('/home/ikarus_app/web/projecte_final_daw/ikarus_base/static/' + file, modelLoadedCallback);
+	loader.load('/static/' + file, modelLoadedCallback);
 }
 
 /**
@@ -247,7 +247,7 @@ function init() {
 		camera = new THREE.PerspectiveCamera(50, theCanvas.width / theCanvas.height, 0.1, 100);
 		camera.position.z = 30;
 		createWorld();
-		installModel("/objects/Azwarius.js");
+		installModel("objects/Azwarius.js");
 		render();
 		document.addEventListener("keydown", doKey, false);
 		//document.getElementById("r1").checked = true;

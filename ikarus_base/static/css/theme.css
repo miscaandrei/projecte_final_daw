@@ -512,7 +512,7 @@ div.content-loader {
 	float: right;
 	margin: 0 30px 10px 0 !important;
 }
-.regist input {.register-ok {
+.regist input .register-ok {
 	text-align: center;
 	color: green;
 }
